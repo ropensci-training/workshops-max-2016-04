@@ -1,0 +1,51 @@
+---
+title: "taxonomic data"
+author: Scott Chamberlain
+date: April 19, 2016
+output: 
+  revealjs::revealjs_presentation:
+    theme: solarized
+    transition: none
+    highlight: pygments
+    reveal_options:
+      slideNumber: true
+---
+
+## taxize - two organizing principles
+
+`taxize` - [https://github.com/ropensci/taxize](https://github.com/ropensci/taxize)
+
+- Data sources
+    - Lots of data sources, currently 20
+- Verbs (ish)
+    - `classification()`
+    - `children()`
+    - `downstream()`
+    - `comm2sci()` / `sci2comm()`
+    - `resolve()`
+    - `synonyms()`
+
+## Why taxize?
+
+> A single easy to use user interface to many data sources can simplify science, and make it more reproducible
+
+## Why...more
+
+* Many biologists deal with names at some point in their research = taxonomy is fundamental data
+* Integrations: After names are cleaned, integrate with other parts of research workflow
+  * taxonomy -> biodiversity data
+  * taxonomy -> phylogenetics
+  * taxonomy -> molecular work
+
+## Other taxonomic tools
+
+* `taxa` - taxonomic classes - in development [https://github.com/ropenscilabs/taxa](https://github.com/ropenscilabs/taxa)
+* `binomen` - manipulations on taxonomic classes - [https://github.com/ropenscilabs/binomen](https://github.com/ropenscilabs/binomen)
+* `taxizedb` - taxonomic databases - [https://github.com/ropenscilabs/taxizedb](https://github.com/ropenscilabs/taxizedb)
+
+others
+
+* `Taxonstand` - [https://cran.rstudio.com/web/packages/Taxonstand/](https://cran.rstudio.com/web/packages/Taxonstand/)
+
+## Lessons & Exercises
+
