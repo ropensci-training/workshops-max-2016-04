@@ -3,4 +3,8 @@
 # CAEE Workshop
 Date: **April 2016**
 
-Slides and code for taxonomy and biodiversity data.
+Slides and code:
+
+* [Introduction](00-introduction)
+* [Taxonomy](01-taxonomy)
+* [Biodiversity](02-biodiversity)
