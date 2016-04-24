@@ -31,8 +31,14 @@ output:
 * Single user interface to biodiversity data
 * Easily make static or interactive maps
 
+## Mapping
+
+`mapr` - [https://github.com/ropensci/mapr](https://github.com/ropensci/mapr)
+
 ## Data cleaning
 
 `scrubr` - [https://github.com/ropensci/spocc](https://github.com/ropensci/spocc)
 
 ## Lessons & Exercises
+
+* 

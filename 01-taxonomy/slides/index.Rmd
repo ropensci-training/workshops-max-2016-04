@@ -11,9 +11,11 @@ output:
       slideNumber: true
 ---
 
-## taxize - two organizing principles
+## taxize
 
-`taxize` - [https://github.com/ropensci/taxize](https://github.com/ropensci/taxize)
+[https://github.com/ropensci/taxize](https://github.com/ropensci/taxize)
+
+## taxize - two organizing principles
 
 - Data sources
     - Lots of data sources, currently 20
@@ -49,3 +51,13 @@ others
 
 ## Lessons & Exercises
 
+__Lessons__
+
+* Identifiers
+* Classifications
+
+__Exercises__
+
+* Working with taxonomic identifiers
+* Scientific & common name conversion
+* Downstream

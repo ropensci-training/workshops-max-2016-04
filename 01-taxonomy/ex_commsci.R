@@ -4,7 +4,7 @@
 ## Type in some common names
 namelist <- c("","","","","")
 
-## Call the funciton comm2sci with db='ncbi'
+## Call the function `comm2sci()` with db='ncbi'
 comm2sci(commnames = namelist, db="ncbi", simplify=TRUE)
 
 ## Now use a different backend, eol

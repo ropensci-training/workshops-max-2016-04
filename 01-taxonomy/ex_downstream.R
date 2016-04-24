@@ -8,6 +8,11 @@
 
 # Then pass on that id to col_downstream or itis_downstream
 
-col_downstream(tsns=, downto=)
+downstream(tsns=, downto=)
 
-itis_downstream(tsns=, downto=)
+downstream(tsns=, downto=)
+
+
+# Bonus points
+
+xxx
