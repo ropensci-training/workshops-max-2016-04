@@ -1,5 +1,14 @@
 ## rgbif data quality/data cleaning
 
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
 > In development version only
 
 ### Load some libraries

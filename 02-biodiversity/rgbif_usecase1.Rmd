@@ -2,7 +2,7 @@
 
 ```{r child="../knitopts.Rmd", include=FALSE}
 knitr::opts_chunk$set(
-  comment = "# ",
+  comment = "#>",
   error = FALSE,
   cache = TRUE,
   message = FALSE,

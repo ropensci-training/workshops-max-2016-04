@@ -1,5 +1,14 @@
 ## rgbif use case - Finding countries species are found in using rgbif
 
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
 ### Load some libraries
 
 ```{r}

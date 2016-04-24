@@ -1,5 +1,14 @@
 # You can get some plant names using `names_list`
 
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
 By default gets generic names, and returns 10 items
 
 ```{r}

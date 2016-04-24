@@ -1,5 +1,14 @@
 ## Macroecology - testing the species-abundance distribution
 
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
 ```{r}
 library('rbison')
 library('ggplot2')

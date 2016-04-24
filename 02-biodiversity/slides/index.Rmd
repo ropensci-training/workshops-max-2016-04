@@ -39,6 +39,19 @@ output:
 
 `scrubr` - [https://github.com/ropensci/spocc](https://github.com/ropensci/spocc)
 
+`rgeospatialquality` - [https://github.com/ropensci/spocc](https://github.com/ropensci/spocc)
+
 ## Lessons & Exercises
 
-* 
+__Lessons__
+
+* rgbif
+* spocc
+* mapping
+* cleaning
+
+__Exercises__
+
+* Getting data
+* Mapping occurrence data
+* Cleaning occurrence data

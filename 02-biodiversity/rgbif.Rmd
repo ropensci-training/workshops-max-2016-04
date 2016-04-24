@@ -1,41 +1,122 @@
 ### rgbif
 
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
 ### Load libraries
 
-```{r load, message=FALSE, warning=FALSE}
-library('spocc')
+```{r}
+library('rgbif')
 ```
 
-### spocc unifies access to biodiversity data across sources
+## Number of occurrences
 
-```{r sources, message=FALSE, warning=FALSE}
-out <- occ(query='Accipiter striatus', from='gbif')
-out$gbif # GBIF data w/ metadata
-out$ebird$data # empty
-out$gbif$meta #  metadata, your query parameters, time the call executed, etc.
-out$gbif$data # just data
+Search by type of record, all observational in this case
+
+```{r occ_count1}
+occ_count(basisOfRecord='OBSERVATION')
 ```
 
-And you can squash together data from sources easily
+Records for **Puma concolor** with lat/long data (georeferened) only. Note that `hasCoordinate` in `occ_search()` is the same as `georeferenced` in `occ_count()`.
 
-```{r manysources, message=FALSE, warning=FALSE}
-out <- occ(query='Accipiter striatus', from=c('gbif','ebird'))
-head( occ2df(out) )
+```{r occ_count2}
+occ_count(taxonKey=2435099, georeferenced=TRUE)
 ```
 
-### Make a map using ggplot2
+Records from Denmark
 
-```{r ggplot2}
-ebird_data <- occ(query = 'Accipiter striatus', from = 'ebird')
-mapggplot(ebird_data)
+```{r occ_count4}
+denmark_code <- isocodes[grep("Denmark", isocodes$name), "code"]
+occ_count(country=denmark_code)
 ```
 
-### Make a map using GitHub gists
+## Search for taxon names
 
-If you have a Github Account, you can get an interactive map on Github in one line of code. The map will open in your default browser.
+* `name_lookup()` does full text search of all name data.
 
-```{r gistmap, eval=FALSE}
-mapgist(ebird_data, color=c("#976AAE","#6B944D","#BD5945"))
+```{r}
+out <- name_lookup(query = 'mammalia')
 ```
 
-![](figure/gistmap.png)
+```{r}
+names(out)
+```
+
+```{r}
+out$meta
+```
+
+```{r}
+head(out$data)
+```
+
+```{r}
+out$facets
+```
+
+```{r}
+out$hierarchies[1:2]
+```
+
+```{r}
+out$names[2]
+```
+
+* `name_backbone()` - search against the GBIF backbone taxonomy
+
+```{r}
+name_backbone(name = 'Helianthus', rank = 'genus', kingdom = 'plants')
+```
+
+
+## Single occurrence records
+
+Get data for a single occurrence. Note that data is returned as a list, with slots for metadata and data, or as a hierarchy, or just data.
+
+Just data
+
+```{r occ_get1}
+occ_get(key = 766766824, return = 'data')
+```
+
+Just taxonomic hierarchy
+
+```{r occ_get2}
+occ_get(key=766766824, return='hier')
+```
+
+Get many occurrences. `occ_get` is vectorized
+
+```{r occ_get4}
+occ_get(key=c(766766824, 101010, 240713150, 855998194), return='data')
+```
+
+
+## Search for occurrences
+
+* `occ_search()`
+
+```{r}
+occ_search(scientificName = "Ursus americanus", limit = 20)
+```
+
+Ideally, search for names first, make sure you have the right name, then pass the GBIF key to the `occ_search()` function:
+
+```{r}
+key <- name_suggest(q='Helianthus annuus', rank='species')$key[1]
+occ_search(taxonKey=key, limit=20)
+```
+
+Most parameters are vectorized, so you can pass in more than one value:
+
+```{r}
+splist <- c('Cyanocitta stelleri', 'Junco hyemalis', 'Aix sponsa')
+keys <- sapply(splist, function(x) name_suggest(x)$key[1], USE.NAMES = FALSE)
+occ_search(taxonKey = keys, limit = 5)
+```

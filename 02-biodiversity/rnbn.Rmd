@@ -1,5 +1,14 @@
 ## rnbn examples
 
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
 > We can't run this on the RStudio server instance, try this on your own machine...
 
 ### Load package

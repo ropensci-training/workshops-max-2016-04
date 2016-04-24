@@ -1,0 +1,116 @@
+## cleaning biodiversity data
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Load libraries
+
+```{r load}
+library('scrubr')
+```
+
+We'll use sample datasets included with the package, they are lazy loaded,
+and available via `sample_data_1` and `sample_data_2`
+
+## Coordinate based cleaning
+
+Remove impossible coordinates (using sample data included in the pkg)
+
+```{r}
+dframe(sample_data_1) %>% coord_impossible()
+```
+
+Remove incomplete coordinates
+
+```{r}
+dframe(sample_data_1) %>% coord_incomplete()
+```
+
+Remove unlikely coordinates (e.g., those at 0,0)
+
+```{r}
+dframe(sample_data_1) %>% coord_unlikely()
+```
+
+Do all three
+
+```{r}
+dframe(sample_data_1) %>%
+  coord_impossible() %>%
+  coord_incomplete() %>%
+  coord_unlikely()
+```
+
+Don't drop bad data
+
+```{r}
+dframe(sample_data_1) %>% coord_incomplete(drop = TRUE) %>% NROW
+dframe(sample_data_1) %>% coord_incomplete(drop = FALSE) %>% NROW
+```
+
+## Deduplicate
+
+```{r}
+smalldf <- sample_data_1[1:20, ]
+# create a duplicate record
+smalldf <- rbind(smalldf, smalldf[10,])
+row.names(smalldf) <- NULL
+# make it slightly different
+smalldf[21, "key"] <- 1088954555
+NROW(smalldf)
+dp <- dframe(smalldf) %>% dedup()
+NROW(dp)
+attr(dp, "dups")
+```
+
+## Dates
+
+Standardize/convert dates
+
+```{r}
+dframe(sample_data_1) %>% date_standardize("%d%b%Y")
+```
+
+Drop records without dates
+
+```{r}
+NROW(sample_data_1)
+NROW(dframe(sample_data_1) %>% date_missing())
+```
+
+Create date field from other fields
+
+```{r}
+dframe(sample_data_2) %>% date_create(year, month, day)
+```
+
+## Taxonomy
+
+Only one function - remove rows where taxonomic names are either missing an epithet, or are missing altogether  (`NA` or `NULL`).
+
+Get some data from GBIF, via `rgbif`
+
+```{r}
+if (requireNamespace("rgbif", quietly = TRUE)) {
+  library("rgbif")
+  res <- occ_data(limit = 500)$data
+} else {
+  res <- sample_data_3
+}
+```
+
+Clean names
+
+```{r}
+NROW(res)
+df <- dframe(res) %>% tax_no_epithet(name = "name")
+NROW(df)
+attr(df, "name_var")
+attr(df, "tax_no_epithet")
+```
