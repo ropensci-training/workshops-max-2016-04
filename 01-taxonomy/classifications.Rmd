@@ -1,0 +1,46 @@
+## classifications
+
+```{r}
+knitr::opts_chunk$set(
+  comment = "#>",
+  error = FALSE,
+  cache = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+
+Next to identifiers, taxonomic classifications are possibly the next most
+widely and useful bits of data.
+
+```{r}
+library('taxize')
+```
+
+## classification - via taxonomic name
+
+```{r}
+classification("Puma concolor", db = 'ncbi')
+```
+
+```{r}
+classification("Pinus contorta", db = 'gbif')
+```
+
+## classification - via id
+
+```{r}
+classification(<identifier>, db = 'ncbi')
+```
+
+```{r}
+classification(<identifier>, db = 'gbif')
+```
+
+### many ids as input
+
+```{r}
+ids <- get_ids(names="Poa annua", db = c('ncbi','itis','col','tropicos'))
+classification(ids)
+```

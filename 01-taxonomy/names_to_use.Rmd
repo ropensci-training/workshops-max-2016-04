@@ -1,4 +1,4 @@
-# You can get some plant names using `names_list`
+# plant names using `names_list`
 
 ```{r echo=FALSE}
 knitr::opts_chunk$set(

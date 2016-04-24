@@ -1,4 +1,4 @@
-## taxize tries to make it easy to get identifiers from the various database sources
+## identifiers
 
 ```{r}
 knitr::opts_chunk$set(
@@ -17,38 +17,30 @@ Here, get identifiers from 5 different sources for *Poa annua*. Then we can pass
 
 ```{r}
 library('taxize')
+```
+
+## Get ids from many sources at once
+
+```{r}
 out <- get_ids(names="Poa annua", db = c('ncbi','itis','col','tropicos'))
 ```
 
-## Get a classification
-
-### From ITIS
+## From single source, e.g,: ITIS
 
 ```{r}
-classification(out$itis)
+get_tsn("Poa annua")
 ```
 
-### From COL
+## Coerce a name or id to a taxon identifier class
 
 ```{r}
-classification(out$col)
-```
-
-### From NCBI
-
-```{r}
-classification(out$ncbi)
-```
-
-## Get synonyms from Tropicos
-
-```{r}
-synonyms(out$itis)
+as.tsn("Poa annua")
+as.tsn(<tsn>)
 ```
 
 ## Many names - the ids class
 
-In this case get many identifiers for many names, then pass in identifiers to get many classifications
+In this case get many identifiers for many names
 
 ```{r}
 mynames <- c("Helianthus annuus","Pinus contorta","Collomia grandiflora")
@@ -56,5 +48,4 @@ out <- get_ids(names=mynames, db = c('ncbi','itis','col','tropicos'))
 out$tropicos
 class(out)
 class(out$col)
-classification(out$col)
 ```
