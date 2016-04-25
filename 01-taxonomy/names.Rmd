@@ -9,6 +9,12 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r}
+library("taxize")
+```
+
+`names_list()` is a function that gets you names from Theplantlist
+
 By default gets generic names, and returns 10 items
 
 ```{r}

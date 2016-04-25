@@ -1,10 +1,9 @@
 ## Aggregate a data set to a taxonomic level
 
-```{r include=FALSE}
+```{r echo=FALSE}
 knitr::opts_chunk$set(
   comment = "#>",
   error = FALSE,
-  cache = TRUE,
   message = FALSE,
   warning = FALSE
 )
@@ -12,14 +11,14 @@ knitr::opts_chunk$set(
 
 ### Load libraries
 
-```{r load, warning=FALSE, message=FALSE}
+```{r}
 library('taxize')
 library('vegan')
 ```
 
 ### Use the dune dataset from the vegan package
 
-```{r checknames, message=FALSE, warning=FALSE}
+```{r}
 data(dune, package='vegan')
 dune <- dune[,-c(22:30)] # take a subset
 species <- c("Bellis perennis", "Empetrum nigrum", "Juncus bufonius",

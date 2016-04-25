@@ -1,6 +1,6 @@
 ## Get common names from taxonomic names
 
-```{r include=FALSE}
+```{r echo=FALSE}
 knitr::opts_chunk$set(
   comment = "#>",
   error = FALSE,

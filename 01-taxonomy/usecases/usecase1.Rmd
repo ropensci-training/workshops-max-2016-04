@@ -1,0 +1,34 @@
+## Cleaning taxonomic names
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  error = FALSE,
+  cache = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+### Load libraries
+
+```{r load}
+library('taxize')
+```
+
+Most of us will start out with a species list, something like the one below. Note that each of the names is spelled incorrectly.
+
+There are many ways to resolve taxonomic names in taxize. Of course, the ideal name resolver will do the work behind the scenes for you so that you don't have to do things like fuzzy matching. There are a few services in taxize like this we can choose from: 
+
+One option is the Global Names Resolver service from EOL (see function *gnr_resolve*):
+
+```{r}
+splist <- c("Pinos contorta","Collomia grandiflorra", "Abies magnificaa","Datura wrighti","Mimulus bicolour","Nicotiana glauca","Maddia sativa","Bartlettia scapposa")
+```
+
+```{r}
+sources <- gnr_datasources()
+eol <- sources$id[sources$title == 'EOL']
+out <- gnr_resolve(splist, data_source_ids = eol, stripauthority = TRUE)
+head(out)
+```

@@ -1,19 +1,46 @@
 ## identifiers
 
-```{r}
+```{r echo=FALSE}
+library("knitr")
+hook_output <- knitr::knit_hooks$get("output")
+knitr::knit_hooks$set(output = function(x, options) {
+   lines <- options$output.lines
+   if (is.null(lines)) {
+     return(hook_output(x, options))  # pass to default hook
+   }
+   x <- unlist(strsplit(x, "\n"))
+   more <- "..."
+   if (length(lines)==1) {        # first n lines
+     if (length(x) > lines) {
+       # truncate the output, but add ....
+       x <- c(head(x, lines), more)
+     }
+   } else {
+     x <- c(if (abs(lines[1])>1) more else NULL,
+            x[lines],
+            if (length(x)>lines[abs(length(lines))]) more else NULL
+           )
+   }
+   # paste these lines together
+   x <- paste(c(x, ""), collapse = "\n")
+   hook_output(x, options)
+ })
+
 knitr::opts_chunk$set(
   comment = "#>",
-  error = FALSE,
-  cache = TRUE,
+  collapse = TRUE,
   message = FALSE,
   warning = FALSE
 )
 ```
 
+Taxonomic identifiers are the currency you need to convert your names to in order to get any other taxonomic data. 
+
+Unfortunately, there is no one identifier for each taxon to rule them all - each database has their own identifier for the same taxon.
 
 Here, get identifiers from 5 different sources for *Poa annua*. Then we can pass those ids to other functions that act on those ids without any other input
 
-*p.s. this also demonstrates the interactive prompt, as you'll see*
+_p.s. this also demonstrates the interactive prompt, as you'll see_
 
 ```{r}
 library('taxize')
@@ -21,8 +48,13 @@ library('taxize')
 
 ## Get ids from many sources at once
 
+```{r output.lines=1:15}
+out <- get_ids(names = "Poa annua", db = c('ncbi', 'itis', 'col', 'tropicos'))
+out
+```
+
 ```{r}
-out <- get_ids(names="Poa annua", db = c('ncbi','itis','col','tropicos'))
+out$col
 ```
 
 ## From single source, e.g,: ITIS
@@ -34,18 +66,30 @@ get_tsn("Poa annua")
 ## Coerce a name or id to a taxon identifier class
 
 ```{r}
-as.tsn("Poa annua")
-as.tsn(<tsn>)
+get_gbifid("Poa annua")
+```
+
+```{r}
+as.gbifid("2704179")
 ```
 
 ## Many names - the ids class
 
 In this case get many identifiers for many names
 
+```{r output.lines=1:15}
+mynames <- c("Helianthus annuus", "Pinus contorta", "Collomia grandiflora")
+out <- get_ids(names = mynames, db = c('ncbi','itis','col','tropicos'))
+```
+
 ```{r}
-mynames <- c("Helianthus annuus","Pinus contorta","Collomia grandiflora")
-out <- get_ids(names=mynames, db = c('ncbi','itis','col','tropicos'))
 out$tropicos
+```
+
+```{r}
 class(out)
+```
+
+```{r}
 class(out$col)
 ```

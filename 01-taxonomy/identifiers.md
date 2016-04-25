@@ -1,222 +1,161 @@
-## taxize tries to make it easy to get identifiers from the various database sources
+## identifiers
 
 
-```r
-knitr::opts_chunk$set(
-  comment = "# ",
-  error = FALSE,
-  cache = TRUE,
-  message = FALSE,
-  warning = FALSE
-)
-```
 
+Taxonomic identifiers are the currency you need to convert your names to in order to get any other taxonomic data. 
+
+Unfortunately, there is no one identifier for each taxon to rule them all - each database has their own identifier for the same taxon.
 
 Here, get identifiers from 5 different sources for *Poa annua*. Then we can pass those ids to other functions that act on those ids without any other input
 
-*p.s. this also demonstrates the interactive prompt, as you'll see*
+_p.s. this also demonstrates the interactive prompt, as you'll see_
 
 
 ```r
 library('taxize')
-out <- get_ids(names="Poa annua", db = c('ncbi','itis','col','tropicos'))
 ```
 
-## Get a classification
-
-### From ITIS
+## Get ids from many sources at once
 
 
 ```r
-classification(out$itis)
+out <- get_ids(names = "Poa annua", db = c('ncbi', 'itis', 'col', 'tropicos'))
+#>                      name         rank                            colid
+#> 1               Poa annua      species 3b35900f74ff6e4b073ddb95c32b1f8d
+#> 2               Poa annua      species acecf232225c28ce7150f205cd357e77
+#> 3      Poa annua alpigena      species 58dec8fbc003ca565d5258b41e213094
+#> 4        Poa annua maxima infraspecies d456240394f6b1e4de538d7bd0606022
+#> 5      Poa annua purpurea      species 3b35900f74ff6e4b073ddb95c32b1f8d
+#> 6       Poa annua pygmaea      species 58dec8fbc003ca565d5258b41e213094
+#> 7       Poa annua reptans      species 3b35900f74ff6e4b073ddb95c32b1f8d
+#> 8        Poa annua exilis      species acecf232225c28ce7150f205cd357e77
+#> 9     Poa annua notabilis      species 3b35900f74ff6e4b073ddb95c32b1f8d
+#> 10     Poa annua pilantha      species 3b35900f74ff6e4b073ddb95c32b1f8d
+#> 11       Poa annua supina      species 58dec8fbc003ca565d5258b41e213094
+#> 12        Poa annua varia      species 58dec8fbc003ca565d5258b41e213094
+#> 13     Poa annua aquatica      species 3b35900f74ff6e4b073ddb95c32b1f8d
+#> 14    Poa annua eriolepis      species 3b35900f74ff6e4b073ddb95c32b1f8d
+...
+out
+#> $ncbi
+#> Poa annua 
+#>   "93036" 
+#> attr(,"class")
+#> [1] "uid"
+#> attr(,"match")
+#> [1] "found"
+#> attr(,"uri")
+#> [1] "http://www.ncbi.nlm.nih.gov/taxonomy/93036"
+#> 
+#> $itis
+#> Poa annua 
+#>   "41107" 
+#> attr(,"match")
+#> [1] "found"
+...
 ```
-
-```
-#  $`41107`
-#                name          rank
-#  1          Plantae       Kingdom
-#  2   Viridaeplantae    Subkingdom
-#  3     Streptophyta  Infrakingdom
-#  4     Tracheophyta      Division
-#  5  Spermatophytina   Subdivision
-#  6     Angiospermae Infradivision
-#  7    Magnoliopsida         Class
-#  8         Lilianae    Superorder
-#  9           Poales         Order
-#  10         Poaceae        Family
-#  11             Poa         Genus
-#  12       Poa annua       Species
-#  
-#  attr(,"class")
-#  [1] "classification"
-#  attr(,"db")
-#  [1] "itis"
-```
-
-### From COL
 
 
 ```r
-classification(out$col)
+out$col
+#>                          Poa annua 
+#> "3b35900f74ff6e4b073ddb95c32b1f8d" 
+#> attr(,"class")
+#> [1] "colid"
+#> attr(,"match")
+#> [1] "found"
+#> attr(,"uri")
+#> [1] "http://www.catalogueoflife.org/col/details/species/id/3b35900f74ff6e4b073ddb95c32b1f8d"
 ```
 
-```
-#  $`9791858`
-#            name    rank
-#  1      Plantae Kingdom
-#  2 Tracheophyta  Phylum
-#  3   Liliopsida   Class
-#  4       Poales   Order
-#  5      Poaceae  Family
-#  6          Poa   Genus
-#  7    Poa annua Species
-#  
-#  attr(,"class")
-#  [1] "classification"
-#  attr(,"db")
-#  [1] "col"
-```
-
-### From NCBI
+## From single source, e.g,: ITIS
 
 
 ```r
-classification(out$ncbi)
+get_tsn("Poa annua")
+#> [1] "41107"
+#> attr(,"match")
+#> [1] "found"
+#> attr(,"uri")
+#> [1] "http://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=41107"
+#> attr(,"class")
+#> [1] "tsn"
 ```
 
-```
-#  $`93036`
-#                   name         rank
-#  1  cellular organisms      no rank
-#  2           Eukaryota superkingdom
-#  3       Viridiplantae      kingdom
-#  4        Streptophyta       phylum
-#  5      Streptophytina      no rank
-#  6         Embryophyta      no rank
-#  7        Tracheophyta      no rank
-#  8       Euphyllophyta      no rank
-#  9       Spermatophyta      no rank
-#  10      Magnoliophyta      no rank
-#  11    Mesangiospermae      no rank
-#  12         Liliopsida        class
-#  13      Petrosaviidae      no rank
-#  14        commelinids     subclass
-#  15             Poales        order
-#  16            Poaceae       family
-#  17          BEP clade      no rank
-#  18           Pooideae    subfamily
-#  19              Poeae        tribe
-#  20             Poinae     subtribe
-#  21                Poa        genus
-#  22          Poa annua      species
-#  
-#  attr(,"class")
-#  [1] "classification"
-#  attr(,"db")
-#  [1] "ncbi"
-```
-
-## Get synonyms from Tropicos
+## Coerce a name or id to a taxon identifier class
 
 
 ```r
-synonyms(out$itis)
+get_gbifid("Poa annua")
+#> [1] "2704179"
+#> attr(,"class")
+#> [1] "gbifid"
+#> attr(,"match")
+#> [1] "found"
+#> attr(,"uri")
+#> [1] "http://www.gbif.org/species/2704179"
 ```
 
-```
-#  $`41107`
-#                            name    tsn
-#  1      Poa annua var. aquatica 538978
-#  2       Poa annua var. reptans 538979
-#  3                  Aira pumila 785854
-#  4             Catabrosa pumila 787993
-#  5               Ochlopoa annua 791574
-#  6               Poa aestivalis 793946
-#  7                   Poa algida 793954
-#  8         Poa annua var. annua 802116
-#  9     Poa annua var. eriolepis 802117
-#  10 Poa annua var. rigidiuscula 802119
-#  11        Poa annua f. reptans 803667
+
+```r
+as.gbifid("2704179")
+#> [1] "2704179"
+#> attr(,"class")
+#> [1] "gbifid"
+#> attr(,"match")
+#> [1] "found"
+#> attr(,"uri")
+#> [1] "http://www.gbif.org/species/2704179"
 ```
 
 ## Many names - the ids class
 
-In this case get many identifiers for many names, then pass in identifiers to get many classifications
+In this case get many identifiers for many names
 
 
 ```r
-mynames <- c("Helianthus annuus","Pinus contorta","Collomia grandiflora")
-out <- get_ids(names=mynames, db = c('ncbi','itis','col','tropicos'))
+mynames <- c("Helianthus annuus", "Pinus contorta", "Collomia grandiflora")
+out <- get_ids(names = mynames, db = c('ncbi','itis','col','tropicos'))
+#>                              name    rank                            colid
+#> 1               Helianthus annuus species 87e986b0873f648711900866fa8abde7
+#> 2        Helianthus annuus annuus species 87e986b0873f648711900866fa8abde7
+#> 3  Helianthus annuus lenticularis species 87e986b0873f648711900866fa8abde7
+#> 4        Helianthus annuus annuus species 87e986b0873f648711900866fa8abde7
+#> 5       Helianthus annuus jaegeri species 87e986b0873f648711900866fa8abde7
+#> 6  Helianthus annuus lenticularis species edaca9efbba0f3de178f59be0d99362f
+#> 7    Helianthus annuus petiolaris species 5647a45549aa0c15a95bb44844bf93cc
+#> 8       Helianthus annuus texanus species 87e986b0873f648711900866fa8abde7
+#> 9        Helianthus annuus annuus species 87e986b0873f648711900866fa8abde7
+#> 10  Helianthus annuus argophyllus species f9ea8aec85f3f21e148d29f361f7c016
+#> 11 Helianthus annuus lenticularis species 87e986b0873f648711900866fa8abde7
+#> 12  Helianthus annuus macrocarpus species 87e986b0873f648711900866fa8abde7
+#> 13      Helianthus annuus texanus species 87e986b0873f648711900866fa8abde7
+#>                    name_status kingdom     family                acc_name
+...
 ```
 
 
 ```r
 out$tropicos
+#>    Helianthus annuus       Pinus contorta Collomia grandiflora 
+#>            "2700851"           "24900183"           "25800485" 
+#> attr(,"class")
+#> [1] "tpsid"
+#> attr(,"match")
+#> [1] "found" "found" "found"
+#> attr(,"uri")
+#> [1] "http://tropicos.org/Name/2700851"  "http://tropicos.org/Name/24900183"
+#> [3] "http://tropicos.org/Name/25800485"
 ```
 
-```
-#     Helianthus annuus       Pinus contorta Collomia grandiflora
-#             "2700851"           "24900183"           "25800485"
-#  attr(,"class")
-#  [1] "tpsid"
-#  attr(,"uri")
-#  [1] "http://tropicos.org/Name/2700851"  "http://tropicos.org/Name/24900183"
-#  [3] "http://tropicos.org/Name/25800485"
-```
 
 ```r
 class(out)
+#> [1] "ids"
 ```
 
-```
-#  [1] "ids"
-```
 
 ```r
 class(out$col)
-```
-
-```
-#  [1] "colid"
-```
-
-```r
-classification(out$col)
-```
-
-```
-#  $`17800756`
-#                 name    rank
-#  1           Plantae Kingdom
-#  2      Tracheophyta  Phylum
-#  3     Magnoliopsida   Class
-#  4         Asterales   Order
-#  5        Asteraceae  Family
-#  6        Helianthus   Genus
-#  7 Helianthus annuus Species
-#  
-#  $`18158354`
-#              name    rank
-#  1        Plantae Kingdom
-#  2   Tracheophyta  Phylum
-#  3      Pinopsida   Class
-#  4        Pinales   Order
-#  5       Pinaceae  Family
-#  6          Pinus   Genus
-#  7 Pinus contorta Species
-#  
-#  $`18772549`
-#                    name    rank
-#  1              Plantae Kingdom
-#  2         Tracheophyta  Phylum
-#  3        Magnoliopsida   Class
-#  4             Ericales   Order
-#  5        Polemoniaceae  Family
-#  6             Collomia   Genus
-#  7 Collomia grandiflora Species
-#  
-#  attr(,"class")
-#  [1] "classification"
-#  attr(,"db")
-#  [1] "col"
+#> [1] "colid"
 ```

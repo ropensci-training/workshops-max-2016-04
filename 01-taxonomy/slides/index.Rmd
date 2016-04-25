@@ -2,7 +2,7 @@
 title: "taxonomic data"
 author: Scott Chamberlain
 date: April 19, 2016
-output: 
+output:
   revealjs::revealjs_presentation:
     theme: solarized
     transition: none
@@ -53,6 +53,7 @@ others
 
 __Lessons__
 
+* Names
 * Identifiers
 * Classifications
 

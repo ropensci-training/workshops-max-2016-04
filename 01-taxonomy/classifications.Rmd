@@ -1,21 +1,33 @@
 ## classifications
 
-```{r}
+```{r echo=FALSE}
 knitr::opts_chunk$set(
   comment = "#>",
-  error = FALSE,
-  cache = TRUE,
+  collapse = TRUE,
   message = FALSE,
   warning = FALSE
 )
 ```
 
-
 Next to identifiers, taxonomic classifications are possibly the next most
 widely and useful bits of data.
 
+Most people want to know what higher taxonomic groups their taxa are nested within. 
+
+With identifiers we just played with, we can now get classification data.
+
 ```{r}
 library('taxize')
+```
+
+## classification - via id
+
+```{r}
+classification(9696, db = 'ncbi')
+```
+
+```{r}
+classification(5285750, db = 'gbif')
 ```
 
 ## classification - via taxonomic name
@@ -28,19 +40,20 @@ classification("Puma concolor", db = 'ncbi')
 classification("Pinus contorta", db = 'gbif')
 ```
 
-## classification - via id
+## Many ids as input
 
-```{r}
-classification(<identifier>, db = 'ncbi')
+```{r results='hide'}
+ids <- get_ids(names = "Poa annua", db = c('ncbi', 'itis', 'col', 'tropicos'))
+cls <- classification(ids)
 ```
 
 ```{r}
-classification(<identifier>, db = 'gbif')
+cls
 ```
 
-### many ids as input
+## Combine classifications
 
 ```{r}
-ids <- get_ids(names="Poa annua", db = c('ncbi','itis','col','tropicos'))
-classification(ids)
+df <- rbind(cls)
+head(df)
 ```
