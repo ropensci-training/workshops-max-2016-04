@@ -81,6 +81,7 @@
 		- inspecting data can be hard
 		- hard to figure out formatting errors with large data - all data is messy as a rule, and when biggish data, its hard to find out where it's broken
 		- R tools getting better at handling big data (w/o invoking databases)
+		- Don't just use data - make sure assumptions aren't being violated, etc.
 		-->
 
 		<section id="intro">
@@ -149,15 +150,40 @@
 			<font size="52"><h1 align="left">... &amp; Learn SQL</h1></font>
 		</section>
 
+		<section data-markdown id="sql-basics">
+			<script type="text/template">
+			Get all columns from table species - first 10 results
+
+			```sql
+			SELECT * FROM species LIMIT 10;
+			```
+
+			Get some columns from table species - where genus is Helianthus
+
+			```sql
+			SELECT name,class,family FROM species WHERE genus = 'Helianthus';
+			```
+
+			Join species and plots tables, selecting certain columns from each
+
+			```sql
+			SELECT Species.Name, Plots.Size, Plots.Latitude, Plots.Longitude
+				FROM Species
+				INNER JOIN Plots
+				ON Species.ID=Plots.ID;
+			```
+			</script>
+		</section>
+
 		<section id="lesson-job-skills">
-			<font size="52"><h1 align="left">These tools great for non-academia jobs</h1></font>
+			<font size="52"><h1 align="left">SQL great for non-academia jobs</h1></font>
 		</section>
 
 		<section id="rstudio-server">
 			<font size="52"><h1 align="left">RStudio Server</h1></font>
 			<img src="img/server-shot.png" alt="rstudio-server" width="50%" />
 			<br>
-			<font size="52"><h2 align="left">It's like you're on your own computer</h2></font>
+			<font size="52"><h2 align="left">It's like you're on your own computer<a href="https://www.rstudio.com/products/rstudio/download-server-2/"><i class="fa fa-link"></i></a></h2></font>
 		</section>
 
 		<section id="inspecting">
@@ -169,8 +195,7 @@
 			<br>
 			<font size="52"><h2 align="left" class="fragment frag1">head/tail/less/etc.</h2></font>
 			<font size="52"><h2 align="left" class="fragment frag2">nano -> edit large file in shell</h2></font>
-			<font size="52"><h2 align="left" class="fragment frag3">csvtoolkit? [link?]</h2></font>
-			<font size="52"><h2 align="left" class="fragment frag4">xx</h2></font>
+			<font size="52"><h2 align="left" class="fragment frag3"><a href="https://csvkit.readthedocs.org/en/0.9.1/">csvkit</a></h2></font>
 			<font size="52"><h2 align="left" class="fragment frag5">high performance text editors (Sublime Text)</h2></font>
 		</section>
 
