@@ -9,25 +9,76 @@ knitr::opts_chunk$set(
 )
 ```
 
-### Load libraries
 
 ```{r load}
 library('spocc')
 ```
 
-### spocc unifies access to biodiversity data across sources
+## spocc unifies access to biodiversity data across sources
+
+### Data sources
+
+* [GBIF](http://www.gbif.org/)
+* [BISON](http://bison.usgs.ornl.gov/)
+* [eBird](http://ebird.org/content/ebird/)
+* [iNaturalist](http://www.inaturalist.org/)
+* [Berkeley Ecoengine](https://ecoengine.berkeley.edu/)
+* [AntWeb](http://www.antweb.org/)
+* [VertNet](http://vertnet.org/)
+* [iDigBio](https://www.idigbio.org/)
+
+## Get data
 
 ```{r sources}
 out <- occ(query = 'Accipiter striatus', from = 'gbif')
-out$gbif # GBIF data w/ metadata
-out$ebird$data # empty
-out$gbif$meta #  metadata, your query parameters, time the call executed, etc.
-out$gbif$data # just data
 ```
 
-And you can squash together data from sources easily
+GBIF data w/ metadata
+
+```{r}
+out$gbif
+```
+
+empty
+
+```{r}
+out$ebird$data
+```
+
+metadata, your query parameters, time the call executed, etc.
+
+```{r}
+out$gbif$meta
+```
+
+just data
+
+```{r}
+out$gbif$data
+```
+
+## Data Form
+
+```
+response -- |
+            | -- gbif --- |
+                          | -- meta 
+                          | -- data -- | 
+                                       | -- Accipiter_striatus
+                                       | -- Puma_concolor
+            | -- ecoengine
+            ... and so on for each data source
+
+```
+
+## Combine data
+
+`occ2df()` pulls a few key columns
 
 ```{r manysources}
 out <- occ(query = 'Accipiter striatus', from = c('gbif', 'ebird'))
-head(occ2df(out))
+occ2df(out)
 ```
+
+* Combining data within source easy 
+* Combining data across data sources messy, but can be done - ask me

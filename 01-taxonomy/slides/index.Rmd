@@ -1,7 +1,5 @@
 ---
 title: "taxonomic data"
-author: Scott Chamberlain
-date: April 19, 2016
 output:
   revealjs::revealjs_presentation:
     theme: solarized
@@ -13,7 +11,9 @@ output:
 
 ## taxize
 
-[https://github.com/ropensci/taxize](https://github.com/ropensci/taxize)
+Source: [https://github.com/ropensci/taxize](https://github.com/ropensci/taxize)
+<br>
+CRAN: [https://cran.rstudio.com/web/packages/taxize/](https://cran.rstudio.com/web/packages/taxize/)
 
 ## taxize - two organizing principles
 
@@ -23,9 +23,11 @@ output:
     - `classification()`
     - `children()`
     - `downstream()`
+    - `upstream()`
     - `comm2sci()` / `sci2comm()`
     - `resolve()`
     - `synonyms()`
+    - `lowest_common`
 
 ## Why taxize?
 
