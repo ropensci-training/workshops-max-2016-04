@@ -34,7 +34,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-Taxonomic identifiers are the currency you need to convert your names to in order to get any other taxonomic data. 
+Taxonomic identifiers are the currency you need to convert your names to in order to get any other taxonomic data.
 
 Unfortunately, there is no one identifier for each taxon to rule them all - each database has their own identifier for the same taxon.
 
@@ -73,7 +73,7 @@ get_gbifid("Poa annua")
 as.gbifid("2704179")
 ```
 
-## Many names - the ids class
+## Many names
 
 In this case get many identifiers for many names
 

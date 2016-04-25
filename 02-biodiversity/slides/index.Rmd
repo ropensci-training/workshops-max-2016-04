@@ -2,7 +2,7 @@
 title: "biodiversity data"
 author: Scott Chamberlain
 date: April 19, 2016
-output: 
+output:
   revealjs::revealjs_presentation:
     theme: solarized
     transition: none
@@ -10,6 +10,12 @@ output:
     reveal_options:
       slideNumber: true
 ---
+
+## species occurrence data
+
+* observations of species in nature
+* collected specimens
+* fossils
 
 ## Many different packages
 

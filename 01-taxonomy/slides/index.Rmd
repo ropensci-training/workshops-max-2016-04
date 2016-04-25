@@ -9,6 +9,14 @@ output:
       slideNumber: true
 ---
 
+## taxonomic names
+
+* Everyone's gotta deal with em = taxonomy is fundamental data
+* Integrations: After names are cleaned, integrate with other parts of research workflow
+    * taxonomy -> biodiversity data
+    * taxonomy -> phylogenetics
+    * taxonomy -> molecular work
+
 ## taxize
 
 Source: [https://github.com/ropensci/taxize](https://github.com/ropensci/taxize)
@@ -32,14 +40,6 @@ CRAN: [https://cran.rstudio.com/web/packages/taxize/](https://cran.rstudio.com/w
 ## Why taxize?
 
 > A single easy to use user interface to many data sources can simplify science, and make it more reproducible
-
-## Why...more
-
-* Many biologists deal with names at some point in their research = taxonomy is fundamental data
-* Integrations: After names are cleaned, integrate with other parts of research workflow
-  * taxonomy -> biodiversity data
-  * taxonomy -> phylogenetics
-  * taxonomy -> molecular work
 
 ## Other taxonomic tools
 
