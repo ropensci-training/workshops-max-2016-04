@@ -5,4 +5,6 @@
 
 ## remove duplicates
 
-## think of another cleaning use case that isn't covered by scrubr
+## brainstorm
+### Think of another cleaning use case that isn't covered by scrubr.
+### I'll ask about this at the end
