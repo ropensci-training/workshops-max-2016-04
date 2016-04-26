@@ -48,7 +48,7 @@ output:
 ## Data cleaning
 
 `scrubr` - [https://github.com/ropensci/spocc](https://github.com/ropensci/spocc)
-
+<br><br>
 `rgeospatialquality` - [https://github.com/ropensci/spocc](https://github.com/ropensci/spocc)
 
 ## Lessons & Exercises
