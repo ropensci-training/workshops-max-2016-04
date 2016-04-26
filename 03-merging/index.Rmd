@@ -1,0 +1,44 @@
+---
+title: "Merging data"
+author: "Scott Chamberlain"
+output:
+  revealjs::revealjs_presentation:
+    theme: solarized
+    transition: none
+    highlight: pygments
+    reveal_options:
+      slideNumber: true
+    css: font-awesome-4.6.1/css/font-awesome.css
+---
+
+## What common fields exist?
+
+We need some fields to merge on.
+
+Typically, this is species, location, date, etc.
+
+## Do any variables need to be standardized?
+
+* Dates
+* Coordinates
+* Taxonomic names
+* Missing values
+
+## Joining
+
+* the excel join
+* In R:
+	* `rbind()` / `cbind()` / `merge()`, etc.
+	* `dplyr`: `inner_join()`, `left_join()`, `right_join()`, `full_join()`, `semi_join()`, `anti_join()`
+
+## tools in the works - spenv
+
+[https://github.com/ropenscilabs/spenv](https://github.com/ropenscilabs/spenv)
+<br><br><br>
+<i class="fa fa-envira fa-4x" aria-hidden="true"></i><i class="fa fa-arrows-h fa-4x" aria-hidden="true"></i><i class="fa fa-cloud fa-4x" aria-hidden="true"></i>
+
+## tools in the works - spplit
+
+[https://github.com/ropenscilabs/spplit](https://github.com/ropenscilabs/spplit)
+<br><br><br>
+<i class="fa fa-envira fa-4x" aria-hidden="true"></i><i class="fa fa-arrows-h fa-4x" aria-hidden="true"></i><i class="fa fa-book fa-4x" aria-hidden="true"></i>
