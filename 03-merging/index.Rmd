@@ -26,7 +26,7 @@ Typically, this is species, location, date, etc.
 
 ## Joining
 
-* the excel join
+* the excel join, `vlookup`/etc.
 * In R:
 	* `rbind()` / `cbind()` / `merge()`, etc.
 	* `dplyr`: `inner_join()`, `left_join()`, `right_join()`, `full_join()`, `semi_join()`, `anti_join()`
