@@ -11,8 +11,9 @@ output:
 
 ## taxonomic names
 
-* Everyone's gotta deal with em = taxonomy is fundamental data
-* Integrations: After names are cleaned, integrate with other parts of research workflow
+* Taxonomic names used by nearly everyone
+<br><br>
+* After names are cleaned, integrate with other parts of research workflow
     * taxonomy -> biodiversity data
     * taxonomy -> phylogenetics
     * taxonomy -> molecular work
@@ -47,9 +48,23 @@ CRAN: [https://cran.rstudio.com/web/packages/taxize/](https://cran.rstudio.com/w
 * `binomen` - manipulations on taxonomic classes - [https://github.com/ropenscilabs/binomen](https://github.com/ropenscilabs/binomen)
 * `taxizedb` - taxonomic databases - [https://github.com/ropenscilabs/taxizedb](https://github.com/ropenscilabs/taxizedb)
 
-others
+## taxizedb
 
-* `Taxonstand` - [https://cran.rstudio.com/web/packages/Taxonstand/](https://cran.rstudio.com/web/packages/Taxonstand/)
+Entire taxonomic databases - or - I want all the data
+
+```r
+devtools::install_github("ropenscilabs/taxizedb")
+library("taxizedb")
+```
+
+```r
+db_download_col()
+db_load_col("~/.taxize_local/col.sql")
+src <- src_col()
+tbl <- tbl(src, "hierarchy")
+tbl %>% select(tsn, childrencount)
+sql_collect(src, "select * from taxonomic_units where tsn = '54'")
+```
 
 ## Lessons & Exercises
 
