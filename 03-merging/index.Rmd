@@ -17,19 +17,39 @@ We need some fields to merge on.
 
 Typically, this is species, location, date, etc.
 
+Sometimes a combination: e.g., species & date
+
+## Easier with clean datasets
+
+Do follow the concept of __Tidydata__
+
+Ref: [Tidy Data, Hadley Wickham, Journal of Statistical Software](https://www.jstatsoft.org/article/view/v059i10)
+
+<br><br>
+
+### Tidy Data
+
+* Each variable forms a column.
+* Each observation forms a row.
+* Each type of observational unit forms a table.
+
 ## Do any variables need to be standardized?
 
 * Dates
 * Coordinates
 * Taxonomic names
 * Missing values
+* Plots
+* lowercase/uppercase
+* spelling correction
+* etc. ...
 
 ## Joining
 
-* the excel join, `vlookup`/etc.
+* the excel join, `vlookup`/etc. :sadface:
 * In R:
 	* `rbind()` / `cbind()` / `merge()`, etc.
-	* `dplyr`: `inner_join()`, `left_join()`, `right_join()`, `full_join()`, `semi_join()`, `anti_join()`
+	* `dplyr`: `inner_join()`, `left_join()`, `right_join()`, etc.
 
 ## tools in the works - spenv
 

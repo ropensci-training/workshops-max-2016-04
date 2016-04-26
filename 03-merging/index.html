@@ -86,6 +86,19 @@
 <h1>What common fields exist?</h1>
 <p>We need some fields to merge on.</p>
 <p>Typically, this is species, location, date, etc.</p>
+<p>Sometimes a combination: e.g., species &amp; date</p>
+</section>
+<section id="easier-with-clean-datasets" class="slide level2">
+<h1>Easier with clean datasets</h1>
+<p>Do follow the concept of <strong>Tidydata</strong></p>
+<p>Ref: <a href="https://www.jstatsoft.org/article/view/v059i10">Tidy Data, Hadley Wickham, Journal of Statistical Software</a></p>
+<p><br><br></p>
+<h3 id="tidy-data">Tidy Data</h3>
+<ul>
+<li>Each variable forms a column.</li>
+<li>Each observation forms a row.</li>
+<li>Each type of observational unit forms a table.</li>
+</ul>
 </section>
 <section id="do-any-variables-need-to-be-standardized" class="slide level2">
 <h1>Do any variables need to be standardized?</h1>
@@ -94,16 +107,20 @@
 <li>Coordinates</li>
 <li>Taxonomic names</li>
 <li>Missing values</li>
+<li>Plots</li>
+<li>lowercase/uppercase</li>
+<li>spelling correction</li>
+<li>etc. …</li>
 </ul>
 </section>
 <section id="joining" class="slide level2">
 <h1>Joining</h1>
 <ul>
-<li>the excel join</li>
+<li>the excel join, <code>vlookup</code>/etc. :sadface:</li>
 <li>In R:
 <ul>
 <li><code>rbind()</code> / <code>cbind()</code> / <code>merge()</code>, etc.</li>
-<li><code>dplyr</code>: <code>inner_join()</code>, <code>left_join()</code>, <code>right_join()</code>, <code>full_join()</code>, <code>semi_join()</code>, <code>anti_join()</code></li>
+<li><code>dplyr</code>: <code>inner_join()</code>, <code>left_join()</code>, <code>right_join()</code>, etc.</li>
 </ul></li>
 </ul>
 </section>
