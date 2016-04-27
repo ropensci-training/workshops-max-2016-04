@@ -70,7 +70,7 @@ get_gbifid("Poa annua")
 ```
 
 ```{r}
-as.gbifid("2704179")
+as.gbifid("7576620")
 ```
 
 ## Many names
@@ -93,3 +93,6 @@ class(out)
 ```{r}
 class(out$col)
 ```
+
+
+

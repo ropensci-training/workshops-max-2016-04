@@ -118,3 +118,14 @@ splist <- c('Cyanocitta stelleri', 'Junco hyemalis', 'Aix sponsa')
 keys <- sapply(splist, function(x) name_suggest(x)$key[1], USE.NAMES = FALSE)
 occ_search(taxonKey = keys, limit = 5)
 ```
+
+
+
+
+
+
+
+
+
+
+

@@ -89,17 +89,17 @@
 			<h1><font color="#B8172F">Biggish data</font></h1><br>
 			<p class="grey">Scott Chamberlain (<a href="https://twitter.com/sckottie">@sckottie</a>/<a href="@ropensci">@ropensci</a>)
 				<p class="grey">UC Berkeley / rOpenSci
-				<p class="grey">ORCID: <a href="https://orcid.org/0000-0003-1444-9135">0000-0003-1444-9135</a>
+				<p class="grey">IDEM 186: Comparative Approaches in Ecology and Evolution
 			<br><br><br>
 			<center>Supported by:</center>
 			<span><img src="img/helmsley.png" alt="helmsley" /></span>
 		</section>
 
-		<section id="link">
+<!-- 		<section id="link">
 			<i class="fa fa-external-link fa-5x"></i>
 			<br><br>
 			<h2><a href="http://ropensci.github.io/workshops-max-2016-04-27/biggishdata">ropensci.github.io/workshops-max-2016-04-27/biggishdata</a> </h2>
-		</section>
+		</section> -->
 
 		<section id="license">
 			<br>
@@ -124,14 +124,47 @@
 			<font size="52"><h1 align="left">Likely just a <strong>data</strong> problem</h1></font>
 		</section>
 
-		<section id="lesson-rethink-the-problem">
+		<section id="lesson-rethink-the-problem-1">
 			<font size="52"><h1 align="left">Stop / rethink the problem</h1></font>
+		</section>
+
+		<section id="lesson-rethink-how">
+			<font size="52"><h1 align="left"><i class="fa fa-question-circle fa-3x"></i><br>What can be done? <small>(non-technical soln's)</small></h1></font>
+		</section>
+
+		<section id="lesson-rethink-the-problem-2">
+			<font size="52"><h2 align="left" class="fragment frag4">???</h2></font>
 			<br>
-			<font size="52"><h2 align="left" class="fragment frag1">How can data be summarized?</h2></font>
+			<font size="52"><h2 align="left" class="fragment frag1">Summarize data</h2></font>
 			<br>
 			<font size="52"><h2 align="left" class="fragment frag2">Reduce complexity</h2></font>
 			<br>
 			<font size="52"><h2 align="left" class="fragment frag3">Only deal w/ really imprt. variables</h2></font>
+		</section>
+
+		<section id="raw-data-question">
+			<font size="52"><h1 align="left"><i class="fa fa-question-circle fa-3x"></i><br>What do you do with raw data?</h1></font>
+		</section>
+
+		<section id="raw-data-dont-touch">
+			<font size="52"><h1 align="left"><br>Don't touch it</h1></font>
+			<br><br><br>
+			<emph>The challenge of combining 176 x #otherpeoplesdata to create the Biomass And Allometry Database</emph>
+			<br>
+			<a href="http://ropensci.org/blog/2015/06/03/baad/">http://ropensci.org/blog/2015/06/03/baad</a>
+		</section>
+
+		<section id="file-names">
+			<font size="52"><h1 align="left"><br>Please don't do this</h1></font>
+			<br>
+			<p>my_file_v1.xls</p>
+			<p>my_file_v2.xls</p>
+			<p>my_file_v3.xls</p>
+			<p>my_file_v4.xls</p>
+		</section>
+
+		<section id="fit-data-delivery-to-need">
+			<font size="52"><h1 align="left">Fit data delivery method to your data needs</h1></font>
 		</section>
 
 		<section id="lesson-not-always-apis">
@@ -146,6 +179,12 @@
 			<font size="52"><h1 align="left">Too big for R? -> use a database ...</h1></font>
 		</section>
 
+		<section id="sqlite">
+			<font size="52"><h1 align="left">SQLite - easiest</h1></font>
+			<br>
+			<font size="52"><h1 align="left">MySQL, PostgreSQL, etc. - harder</h1></font>
+		</section>
+
 		<section id="lesson-learn-sql">
 			<font size="52"><h1 align="left">... &amp; Learn SQL</h1></font>
 		</section>
@@ -157,13 +196,13 @@
 			```sql
 			SELECT * FROM species LIMIT 10;
 			```
-
+			<br><br>
 			Get some columns from table species - where genus is Helianthus
 
 			```sql
 			SELECT name,class,family FROM species WHERE genus = 'Helianthus';
 			```
-
+			<br><br>
 			Join species and plots tables, selecting certain columns from each
 
 			```sql
@@ -176,7 +215,7 @@
 		</section>
 
 		<section id="lesson-job-skills">
-			<font size="52"><h1 align="left">SQL great for non-academia jobs</h1></font>
+			<font size="52"><h1 align="left">(p.s. SQL great for non-academia jobs)</h1></font>
 		</section>
 
 		<section id="rstudio-server">
@@ -186,8 +225,45 @@
 			<font size="52"><h2 align="left">It's like you're on your own computer<a href="https://www.rstudio.com/products/rstudio/download-server-2/"><i class="fa fa-link"></i></a></h2></font>
 		</section>
 
+		<section data-markdown id="rstudio-server-analogsea">
+			<script type="text/template">
+			analogsea - Digital Ocean R client
+
+			```r
+			library("analogsea")
+			docklet_create() %>% docklet_rstudio()
+			```
+			<br>
+			<img src="img/server-shot.png" alt="rstudio-server" width="70%" />
+			</script>
+		</section>
+
+		<section id="what-errors">
+			<font size="52"><h1 align="left"><i class="fa fa-question-circle fa-3x"></i><br>What errors do you deal with?</h1></font>
+		</section>
+
+		<section id="file-problems-2">
+			<font size="52"><h2 align="left" class="fragment frag1">dates ~ the worst, right?</h2></font>
+			<font size="52"><h2 align="left" class="fragment frag2">missing text</h2></font>
+			<font size="52"><h2 align="left" class="fragment frag4">coordinates</h2></font>
+			<font size="52"><h2 align="left" class="fragment frag5">taxonomic names</h2></font>
+			<font size="52"><h2 align="left" class="fragment frag6">missing values</h2></font>
+			<font size="52"><h2 align="left" class="fragment frag8">lowercase/uppercase</h2></font>
+			<font size="52"><h2 align="left" class="fragment frag9">spelling correction</h2></font>
+			<font size="52"><h2 align="left" class="fragment frag9">white space!</h2></font>
+		</section>
+
+		<!-- <section id="file-problems-1">
+			<font size="52"><h1 align="left">Errors hard to find</h1></font>
+			<font size="52"><h2 align="left">if you can't read the file in, how do you find the errors</h2></font>
+		</section> -->
+
+		<section id="how-find-errors">
+			<font size="52"><h1 align="left"><i class="fa fa-question-circle fa-3x"></i><br>How do you find errors?</h1></font>
+		</section>
+
 		<section id="inspecting">
-			<font size="52"><h1 align="left">Inspecting data can be hard</h1></font>
+			<font size="52"><h1 align="left">Inspecting biggish data can be hard</h1></font>
 		</section>
 
 		<section id="inspecting-tools">
@@ -199,22 +275,16 @@
 			<font size="52"><h2 align="left" class="fragment frag5">high performance text editors (Sublime Text)</h2></font>
 		</section>
 
-		<section id="file-problems">
-			<font size="52"><h1 align="left">Errors hard to find</h1></font>
-			<font size="52"><h2 align="left">if you can't read the file in, how do you find the errors</h2></font>
+		<section id="R-tools">
+			<font size="52"><h1 align="left">Reading large data in R</h1></font>
 			<br>
-			<font size="52"><h2 align="left" class="fragment frag1">dates ~ the worst, right?</h2></font>
-			<font size="52"><h2 align="left" class="fragment frag2">missing text here and there</h2></font>
-			<font size="52"><h2 align="left" class="fragment frag3">file type problems/no reader for the type</h2></font>
+			<font size="52"><h2 align="left" class="fragment frag1"><a href="https://cran.rstudio.com/web/packages/dplyr/">dplyr</a></h2></font>
+			<font size="52"><h2 align="left" class="fragment frag2"><a href="https://cran.rstudio.com/web/packages/data.table/">data.table</a></h2></font>
+			<font size="52"><h2 align="left" class="fragment frag3"><a href="https://cran.rstudio.com/web/packages/readr/">readr</a></h2></font>
 		</section>
 
-		<section id="R-tools">
-			<font size="52"><h1 align="left">R tools getting better</h1></font>
-			<br>
-			<font size="52"><h2 align="left" class="fragment frag1">dplyr</h2></font>
-			<font size="52"><h2 align="left" class="fragment frag2">data.table</h2></font>
-			<font size="52"><h2 align="left" class="fragment frag3">readr</h2></font>
-			<font size="52"><h2 align="left" class="fragment frag4">jsonlite</h2></font>
+		<section id="talk-to-us">
+			<font size="52"><h1 align="left">Talk to us at rOpenSci</h1></font>
 		</section>
 
 		<!-- to wrap up -->
