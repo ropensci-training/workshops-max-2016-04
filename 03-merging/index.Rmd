@@ -8,7 +8,7 @@ output:
     highlight: pygments
     reveal_options:
       slideNumber: true
-    css: font-awesome-4.6.1/css/font-awesome.css
+    css: ../css/font-awesome-4.6.1/css/font-awesome.css
 ---
 
 ## What common fields exist?
